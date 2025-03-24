@@ -2,6 +2,7 @@ import * as jwt from "jsonwebtoken";
 import bcrypt from 'bcrypt';
 import { invalidCredentialsError } from "@/erros/invalidCredentialsError";
 import { loginRepository } from "@/repositories/userRepository/loginRepository";
+import { sessionRepository } from "@/repositories/sessionsRepository";
 
 async function loginPost({ email, password }) {
   const login = await loginRepository.findByEmailPassword(email);
@@ -19,7 +20,6 @@ console.log(login)
   const session = await sessionRepository.sessionToken(token, login.id);
   const list = {
     email: login.email,
-    name: login.name,
   };
   return [list, session];
 }
