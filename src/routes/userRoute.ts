@@ -1,4 +1,5 @@
 import { loginController } from '@/controllers/userController/loginController';
+import { registerController } from '@/controllers/userController/registerController';
 import { validateBody } from '@/middlewares/validationMiddlewere';
 import { LoginSchema } from '@/schemas/loginSchemas';
 import { RegisterSchema } from '@/schemas/registerSchemas';
