@@ -1,3 +1,4 @@
+import { validateBody } from '@/middlewares/validationMiddlewere';
 import { Router } from 'express';
 import { ObjectSchema } from 'joi';
 
