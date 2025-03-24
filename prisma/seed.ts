@@ -8,8 +8,13 @@ async function main() {
         data: [
             {
                 email: 'm@gmail.com',
-                password: '$2b$12$RBPyrSMsrg30WlriZcmfheYQkZ/jC0xwx4S2zEv6MqbFuV1T9jDAu',
+                password: '$2b$12$zabExmNp./Pm.bS/u5ujYueZ6YPJ8hcITSfIp4U.EP.UrLfnnCdYS',
                 role: "ADMIN"
+            },
+            {
+                email: 'm1@gmail.com',
+                password: '$2b$12$zabExmNp./Pm.bS/u5ujYueZ6YPJ8hcITSfIp4U.EP.UrLfnnCdYS',
+                role: "USER"
             }
         ] 
     });
