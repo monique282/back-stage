@@ -7,34 +7,52 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Area {
-  id          String     @id @default(uuid())
-  name        String     @unique
-  description String?
-  processes   Process[]
-  createdAt   DateTime   @default(now())
-  updatedAt   DateTime   @updatedAt
+model User {
+  id        String    @id @default(uuid())
+  email     String    @unique
+  password  String
+  role      String?   @default("user")
+  areas     Area[]    @relation("AreaUsers")
+  processes Process[] @relation("ProcessCreatedBy")
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  Process   Process[]
 
-  @@map("area")
+  @@map("users")
 }
 
+model Area {
+  id          String    @id @default(uuid())
+  name        String    @unique
+  description String?
+  processes   Process[]
+  users       User[]    @relation("AreaUsers")
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@map("areas")
+}
 
 model Process {
-  id          String     @id @default(uuid())
+  id          String    @id @default(uuid())
   name        String
   description String?
-  area        Area       @relation(fields: [areaId], references: [id])
+  area        Area      @relation(fields: [areaId], references: [id])
   areaId      String
-  parent      Process?   @relation("ProcessHierarchy", fields: [parentId], references: [id])
+  parent      Process?  @relation("ProcessHierarchy", fields: [parentId], references: [id])
   parentId    String?
-  children    Process[]  @relation("ProcessHierarchy")
+  children    Process[] @relation("ProcessHierarchy")
   tools       String[]
   responsible String[]
   documents   String[]
-  createdAt   DateTime   @default(now())
-  updatedAt   DateTime   @updatedAt
+  createdBy   User?      @relation("ProcessCreatedBy", fields: [createdById], references: [id])
+  createdById String?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  User        User?     @relation(fields: [userId], references: [id])
+  userId      String?
 
   @@index([areaId])
   @@index([parentId])
-  @@map("process")
+  @@map("processes")
 }
