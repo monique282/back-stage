@@ -1,10 +1,11 @@
 import * as jwt from "jsonwebtoken";
 import bcrypt from 'bcrypt';
 import { invalidCredentialsError } from "@/erros/invalidCredentialsError";
+import { loginRepository } from "@/repositories/userRepository/loginRepository";
 
 async function loginPost({ email, password }) {
   const login = await loginRepository.findByEmailPassword(email);
-
+console.log(login)
   if (!login) {
     throw invalidCredentialsError("email não cadastrado");
   }
