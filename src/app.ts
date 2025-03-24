@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import express, { json, Request, Response } from "express";
 import "express-async-errors";
 import httpStatus from "http-status";
+import { UserRoute } from "./routes/userRoute";
 
 
 dotenv.config();
@@ -15,5 +16,6 @@ app
     .get("/health", (req: Request, res: Response) => {
         return res.status(httpStatus.OK).send("Ok running! ");
     })
+    .use("/user", UserRoute)
 
 export default app;
