@@ -1,3 +1,4 @@
+import { RegisterService } from "@/service/userService/registerService";
 import { Request, Response } from "express";
 import httpStatus from "http-status";
 
