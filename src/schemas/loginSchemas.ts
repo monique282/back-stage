@@ -10,16 +10,17 @@ export const LoginSchema = Joi.object({
             'any.required': 'O campo email é obrigatório.',
         }),
 
-    password: Joi.string()
-        .min(8)
-        .max(30)
-        .pattern(/^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&*])/)
-        .required()
-        .messages({
-            'string.empty': 'A senha não pode estar vazia.',
-            'string.min': 'A senha deve ter pelo menos 8 caracteres.',
-            'string.max': 'A senha deve ter no máximo 30 caracteres.',
-            'string.pattern.base': 'A senha deve conter pelo menos uma letra maiúscula, uma minúscula, um número e um caractere especial.',
-            'any.required': 'O campo senha é obrigatório.',
-        }),
+    // password: Joi.string()
+    //     .min(8)
+    //     .max(30)
+    //     .pattern(/^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&*])/)
+    //     .required()
+    //     .messages({
+    //         'string.empty': 'A senha não pode estar vazia.',
+    //         'string.min': 'A senha deve ter pelo menos 8 caracteres.',
+    //         'string.max': 'A senha deve ter no máximo 30 caracteres.',
+    //         'string.pattern.base': 'A senha deve conter pelo menos uma letra maiúscula, uma minúscula, um número e um caractere especial.',
+    //         'any.required': 'O campo senha é obrigatório.',
+    //     }),
+    password: Joi.string().required()
 });

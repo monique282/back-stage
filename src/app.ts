@@ -4,6 +4,7 @@ import express, { json, Request, Response } from "express";
 import "express-async-errors";
 import httpStatus from "http-status";
 import { UserRoute } from "./routes/userRoute";
+import errorHandlingMiddleware from "./middlewares/errorHandlingMiddleware";
 
 
 dotenv.config();
@@ -17,5 +18,9 @@ app
         return res.status(httpStatus.OK).send("Ok running! ");
     })
     .use("/user", UserRoute)
+
+
+app.use(errorHandlingMiddleware);
+
 
 export default app;
