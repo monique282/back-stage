@@ -1,3 +1,4 @@
+import { loginController } from '@/controllers/userController/loginController';
 import { validateBody } from '@/middlewares/validationMiddlewere';
 import { LoginSchema } from '@/schemas/loginSchemas';
 import { Router } from 'express';
