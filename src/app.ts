@@ -5,6 +5,7 @@ import "express-async-errors";
 import httpStatus from "http-status";
 import { UserRoute } from "./routes/userRoute";
 import errorHandlingMiddleware from "./middlewares/errorHandlingMiddleware";
+import { TreeRoute } from "./routes/treeRoute";
 
 
 dotenv.config();
