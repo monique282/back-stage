@@ -5,9 +5,6 @@ import { loginRepository } from "@/repositories/userRepository/loginRepository";
 import { sessionRepository } from "@/repositories/sessionsRepository";
 
 async function loginPost(email: string, password: string ) {
-  // if (!process.env.JWT_SECRET) {
-  //   throw new Error("JWT_SECRET não está configurado");
-  // }
 
   const login = await loginRepository.findByEmailPassword(email);
   if (!login) {
@@ -23,6 +20,7 @@ async function loginPost(email: string, password: string ) {
   const session = await sessionRepository.sessionToken(token, login.id);
   const list = {
     email: login.email,
+    role: login.role
   };
   return [list, session];
 }
