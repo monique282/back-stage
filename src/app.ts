@@ -18,6 +18,7 @@ app
         return res.status(httpStatus.OK).send("Ok running! ");
     })
     .use("/user", UserRoute)
+    .use("/tree", TreeRoute)
 
 
 app.use(errorHandlingMiddleware);
