@@ -19,6 +19,21 @@ async function areaExistsGet(id:number) {
     return area
 };
 
+async function areaDelete(id: number) {
+    await prisma.process.deleteMany({
+        where: {
+            areaId: id
+        }
+    });
+    const area = await prisma.area.delete({
+        where: {
+            id
+        }
+    });
+
+    return area;
+}
+
 export const treeRepository = {
-    treeGet, areaExistsGet
+    treeGet, areaExistsGet, areaDelete
 };
