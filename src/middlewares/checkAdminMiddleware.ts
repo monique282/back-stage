@@ -7,4 +7,25 @@ export async function checkAdmin(req: AuthenticatedRequest, res: Response, next:
         throw unauthorizedType("Apenas administradores podem realizar cadastro de outro usuarios");
     }
     next();
-}
+};
+
+export async function checkAdminDeleteProcess(req: AuthenticatedRequest, res: Response, next: NextFunction) {
+    if (req.user?.role !== 'ADMIN') {
+        throw unauthorizedType("Apenas administradores podem excluir processos");
+    }
+    next();
+};
+
+export async function checkAdminDeleteArea(req: AuthenticatedRequest, res: Response, next: NextFunction) {
+    if (req.user?.role !== 'ADMIN') {
+        throw unauthorizedType("Apenas administradores podem excluir areas");
+    }
+    next();
+};
+
+export async function checkAdminPostArea(req: AuthenticatedRequest, res: Response, next: NextFunction) {
+    if (req.user?.role !== 'ADMIN') {
+        throw unauthorizedType("Apenas administradores podem excluir areas");
+    }
+    next();
+};

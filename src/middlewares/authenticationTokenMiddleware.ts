@@ -18,7 +18,8 @@ export async function authenticateToken(req: AuthenticatedRequest, res: Response
         const { userId } = jwt.verify(token, process.env.JWT_SECRET) as JWTPayload;
 
         const user = await prisma.user.findUnique({
-            where: { id: userId }
+            where: { id: userId },
+            select: { id: true, email: true, role: true }
         });
 
         if (!user) throw unauthorizedError();
