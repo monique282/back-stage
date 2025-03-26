@@ -7,8 +7,18 @@ async function treeGet() {
         },
     });
     return areasWithProcesses;
-}
+};
+
+async function areaExistsGet(id:number) {
+    const area = await prisma.area.findMany({
+        where:{
+            id
+        }
+    })
+
+    return area
+};
 
 export const treeRepository = {
-    treeGet,
+    treeGet, areaExistsGet
 };
