@@ -54,6 +54,15 @@ async function processDelete(id: string) {
     return process;
 };
 
+async function areaPost(name: string, description: string) {
+    const area = await prisma.area.create({
+        data: {
+            name,
+            description: description || null
+        }
+    })
+}
+
 export const treeRepository = {
-    treeGet, areaExistsGet, areaDelete, processExistsGet, processDelete
+    treeGet, areaExistsGet, areaDelete, processExistsGet, processDelete, areaPost
 };

@@ -12,8 +12,6 @@ model User {
   email     String    @unique
   password  String
   role      String   
-  areas     Area[]    @relation("AreaUsers")
-  processes Process[] @relation("ProcessCreatedBy")
   sessions  Session[]
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
@@ -37,7 +35,6 @@ model Area {
   name        String    @unique
   description String?
   processes   Process[]
-  users       User[]    @relation("AreaUsers")
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
 
@@ -56,13 +53,10 @@ model Process {
   tools       String[]
   responsible String[]
   documents   String[]
-  createdBy   User?     @relation("ProcessCreatedBy", fields: [createdById], references: [id])
-  createdById Int?
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
 
   @@index([areaId])
   @@index([parentId])
-  @@index([createdById])
   @@map("processes")
 }

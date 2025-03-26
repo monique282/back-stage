@@ -47,19 +47,12 @@ async function main() {
         where: { name: "Tecnologia" }
     });
 
-    const admin = await prisma.user.findUnique({
-        where: { email: 'm@gmail.com' }
-    });
-
-    if (!admin) throw new Error("Usuário admin não encontrado");
-
     await prisma.process.createMany({
         data: [
             {
                 name: "Contratação",
                 description: "Processo de contratação de novos colaboradores",
                 areaId: areaRH?.id || 1,
-                createdById: admin.id,
                 tools: ["Trello", "Google Docs"],
                 responsible: ["Equipe RH"],
                 documents: ["Modelo de contrato", "Checklist documentação"]
@@ -68,27 +61,22 @@ async function main() {
                 name: "Treinamento",
                 description: "Processo de onboarding e treinamento",
                 areaId: areaRH?.id || 1,
-                createdById: admin.id,
                 tools: ["Moodle", "Zoom"],
                 responsible: ["Coordenador Treinamento"],
                 documents: ["Manual do colaborador", "Avaliação de treinamento"]
             },
-
             {
                 name: "Fechamento Mensal",
                 description: "Processo de fechamento contábil mensal",
                 areaId: areaFinanceiro?.id || 2,
-                createdById: admin.id,
                 tools: ["SAP", "Excel"],
                 responsible: ["Contador", "Analista Financeiro"],
                 documents: ["Relatório mensal", "Planilha de conciliação"]
             },
-
             {
                 name: "Desenvolvimento de Software",
                 description: "Ciclo de vida de desenvolvimento de sistemas",
                 areaId: areaTI?.id || 3,
-                createdById: admin.id,
                 tools: ["GitHub", "Jira", "VS Code"],
                 responsible: ["Equipe de Desenvolvimento"],
                 documents: ["Documentação técnica", "Manual do usuário"]
@@ -108,7 +96,6 @@ async function main() {
                 description: "Triagem e entrevista de candidatos",
                 areaId: areaRH?.id || 1,
                 parentId: processoContratacao.id,
-                createdById: admin.id,
                 tools: ["LinkedIn Recruiter", "Google Meet"],
                 responsible: ["Recrutador"],
                 documents: ["Formulário de entrevista", "Grade de avaliação"]

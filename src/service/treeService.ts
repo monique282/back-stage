@@ -28,6 +28,12 @@ async function processDelete(id: string) {
     return process;
 };
 
+async function areaPost(name:string, description:string) {
+    const area = await treeRepository.areaPost(name, description);
+
+    return area;
+}
+
 export const treeService = {
-    treeGet, areaDelete, processDelete
+    treeGet, areaDelete, processDelete, areaPost
 };
