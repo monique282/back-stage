@@ -32,8 +32,28 @@ async function areaDelete(id: number) {
     });
 
     return area;
-}
+};
+
+async function processExistsGet(id: string) {
+    const process = await prisma.process.findMany({
+        where: {
+            id
+        }
+    })
+
+    return process
+};
+
+async function processDelete(id: string) {
+    const process = await prisma.process.delete({
+        where: {
+            id
+        }
+    });
+
+    return process;
+};
 
 export const treeRepository = {
-    treeGet, areaExistsGet, areaDelete
+    treeGet, areaExistsGet, areaDelete, processExistsGet, processDelete
 };
