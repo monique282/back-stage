@@ -10,7 +10,6 @@ async function treeGet() {
 
 async function areaDelete(id: number) {
     const areaExists = await treeRepository.areaExistsGet(id)
-    console.log(areaExists)
     if(areaExists.length === 0){
         throw invalidCredentialsError("Area não existe")
     };
@@ -19,6 +18,16 @@ async function areaDelete(id: number) {
     return area;
 };
 
+async function processDelete(id: string) {
+    const processExists = await treeRepository.processExistsGet(id)
+    if (processExists.length === 0) {
+        throw invalidCredentialsError("Processo não existe")
+    };
+    const process = await treeRepository.processDelete(id);
+
+    return process;
+};
+
 export const treeService = {
-    treeGet, areaDelete
+    treeGet, areaDelete, processDelete
 };

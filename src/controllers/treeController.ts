@@ -13,6 +13,12 @@ async function areaDelete(req: Request, res: Response) {
     res.status(httpStatus.OK).send(area);
 };
 
+async function processDelete(req: Request, res: Response) {
+    const id = (req.params.id);
+    const process = await treeService.processDelete(id);
+    res.status(httpStatus.OK).send(process);
+};
+
 export const treeComtroller = {
-    treeGet, areaDelete
+    treeGet, areaDelete, processDelete
 };
