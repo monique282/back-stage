@@ -25,7 +25,14 @@ export async function checkAdminDeleteArea(req: AuthenticatedRequest, res: Respo
 
 export async function checkAdminPostArea(req: AuthenticatedRequest, res: Response, next: NextFunction) {
     if (req.user?.role !== 'ADMIN') {
-        throw unauthorizedType("Apenas administradores podem excluir areas");
+        throw unauthorizedType("Apenas administradores podem adicionar areas");
+    }
+    next();
+};
+
+export async function checkAdminPostProcess(req: AuthenticatedRequest, res: Response, next: NextFunction) {
+    if (req.user?.role !== 'ADMIN') {
+        throw unauthorizedType("Apenas administradores podem adicionar processos");
     }
     next();
 };
