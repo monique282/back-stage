@@ -3,15 +3,15 @@ import prisma from "@/database/databease";
 async function treeGet() {
     const areasWithProcesses = await prisma.area.findMany({
         include: {
-            processes: true,    
+            processes: true,
         },
     });
     return areasWithProcesses;
 };
 
-async function areaExistsGet(id:number) {
+async function areaExistsGet(id: number) {
     const area = await prisma.area.findMany({
-        where:{
+        where: {
             id
         }
     })
@@ -71,14 +71,32 @@ async function treeAreaGet() {
 
 async function areaExistGet(areaId: number) {
     const area = await prisma.area.findMany({
-        where:{
+        where: {
             id: areaId
         }
     });
     return area;
 };
 
+async function processPost(name: string,
+    description: string | null | undefined,
+    areaId: number,
+    tools: string[],
+    responsible: string[],
+    documents: string[]) {
+    const area = await prisma.process.create({
+        data: {
+            name,
+            description: description !== undefined ? description : null,
+            areaId,
+            tools,
+            responsible,
+            documents
+        }
+    })
+    return area
+};
 
 export const treeRepository = {
-    treeGet, areaExistsGet, areaDelete, processExistsGet, processDelete, areaPost, treeAreaGet, areaExistGet
+    treeGet, areaExistsGet, areaDelete, processExistsGet, processDelete, areaPost, treeAreaGet, areaExistGet, processPost
 };
