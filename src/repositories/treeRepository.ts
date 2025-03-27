@@ -97,6 +97,20 @@ async function processPost(name: string,
     return area
 };
 
+async function areaPut(name: string, description: string, id: number) {
+    const area = await prisma.area.update({
+        where: {
+            id
+        },
+        data: {
+            name,
+            description
+        }
+    })
+
+    return area
+}
+
 export const treeRepository = {
-    treeGet, areaExistsGet, areaDelete, processExistsGet, processDelete, areaPost, treeAreaGet, areaExistGet, processPost
+    treeGet, areaExistsGet, areaDelete, processExistsGet, processDelete, areaPost, treeAreaGet, areaExistGet, processPost, areaPut
 };

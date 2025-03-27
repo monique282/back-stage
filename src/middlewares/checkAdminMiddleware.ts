@@ -43,3 +43,10 @@ export async function checkAdminPutArea(req: AuthenticatedRequest, res: Response
     }
     next();
 };
+
+export async function checkAdminPutProcess(req: AuthenticatedRequest, res: Response, next: NextFunction) {
+    if (req.user?.role !== 'ADMIN') {
+        throw unauthorizedType("Apenas administradores podem editar processos");
+    }
+    next();
+};

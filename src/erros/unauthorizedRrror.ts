@@ -3,7 +3,7 @@ import { ApplicationError } from '@/protocols';
 export function unauthorizedError(): ApplicationError {
     return {
         name: 'UnauthorizedError',
-        message: 'Você deve estar conectado para continuar',
+        message: 'Você deve ter autorização para continuar',
     };
 }
 

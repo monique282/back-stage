@@ -50,11 +50,21 @@ async function processPost(name: string,
     const areaExist = await treeRepository.areaExistGet(areaId);
     if (areaExist.length === 0) {
         throw invalidCredentialsError("Area não existe")
-    }
-    const area = await treeRepository.processPost(name, description, areaId, tools, responsible, documents)
+    };
+    const area = await treeRepository.processPost(name, description, areaId, tools, responsible, documents);
+
     return area;
 };
 
+async function areaPut(name: string, description: string, id: number ) {
+    const areaExists = await treeRepository.areaExistsGet(id)
+    if (areaExists.length === 0) {
+        throw invalidCredentialsError("Area não existe")
+    };
+    const area = await treeRepository.areaPut(name, description, id)
+    return area
+};
+
 export const treeService = {
-    treeGet, areaDelete, processDelete, areaPost, treeAreaGet, processPost
+    treeGet, areaDelete, processDelete, areaPost, treeAreaGet, processPost, areaPut
 };

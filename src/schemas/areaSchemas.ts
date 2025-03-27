@@ -12,7 +12,7 @@ export const AreaSchema = Joi.object({
 
     description: Joi.string()
         .min(5)
-        .max(30)
+        .max(200)
         .required()
         .messages({
             'string.empty': 'A descrição não pode estar vazia.',

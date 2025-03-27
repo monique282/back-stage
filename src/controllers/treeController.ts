@@ -39,10 +39,17 @@ async function processPost(req: Request, res: Response){
 async function areaPut(req: Request, res: Response) {
     const { name, description } = req.body;
     const id = Number(req.params.id);
-    const process = await treeService.areaPut(name, description, id);
+    const area = await treeService.areaPut(name, description, id);
+    res.status(httpStatus.OK).send(area);
+};
+
+async function processPut(req: Request, res: Response) {
+    const { name, description, tools, responsible, documents } = req.body;
+    const id = Number(req.params.id);
+    const process = await treeService.processPut(name, description, id, tools, responsible, documents);
     res.status(httpStatus.OK).send(process);
 };
 
 export const treeComtroller = {
-    treeGet, areaDelete, processDelete, areaPost, treeAreaGet, processPost, areaPut
+    treeGet, areaDelete, processDelete, areaPost, treeAreaGet, processPost, areaPut, processPut
 };
