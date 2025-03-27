@@ -45,7 +45,7 @@ async function areaPut(req: Request, res: Response) {
 
 async function processPut(req: Request, res: Response) {
     const { name, description, tools, responsible, documents } = req.body;
-    const id = Number(req.params.id);
+    const id = (req.params.id);
     const process = await treeService.processPut(name, description, id, tools, responsible, documents);
     res.status(httpStatus.OK).send(process);
 };

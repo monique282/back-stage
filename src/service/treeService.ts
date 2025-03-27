@@ -65,6 +65,16 @@ async function areaPut(name: string, description: string, id: number ) {
     return area
 };
 
+async function processPut(name: string, description: string, id: string, tools: string[], responsible: string[], documents: string[]) {
+    const processExists = await treeRepository.processExistsGet(id)
+    if (processExists.length === 0) {
+        throw invalidCredentialsError("Processo não existe")
+    };
+    const process = await treeRepository.processPut(name, description, id, tools, responsible, documents);
+
+    return process
+};
+
 export const treeService = {
-    treeGet, areaDelete, processDelete, areaPost, treeAreaGet, processPost, areaPut
+    treeGet, areaDelete, processDelete, areaPost, treeAreaGet, processPost, areaPut, processPut
 };
