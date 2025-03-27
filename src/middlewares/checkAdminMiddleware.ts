@@ -36,3 +36,10 @@ export async function checkAdminPostProcess(req: AuthenticatedRequest, res: Resp
     }
     next();
 };
+
+export async function checkAdminPutArea(req: AuthenticatedRequest, res: Response, next: NextFunction) {
+    if (req.user?.role !== 'ADMIN') {
+        throw unauthorizedType("Apenas administradores podem editar areas");
+    }
+    next();
+};

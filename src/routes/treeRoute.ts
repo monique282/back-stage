@@ -1,7 +1,7 @@
 
 import { treeComtroller } from '@/controllers/treeController';
 import { authenticateToken } from '@/middlewares/authenticationTokenMiddleware';
-import { checkAdminDeleteArea, checkAdminDeleteProcess, checkAdminPostArea, checkAdminPostProcess } from '@/middlewares/checkAdminMiddleware';
+import { checkAdminDeleteArea, checkAdminDeleteProcess, checkAdminPostArea, checkAdminPostProcess, checkAdminPutArea } from '@/middlewares/checkAdminMiddleware';
 import { validateBody } from '@/middlewares/validationMiddlewere';
 import { AreaSchema } from '@/schemas/areaSchemas';
 import { processSchema } from '@/schemas/processSchemas';
@@ -16,6 +16,8 @@ TreeRoute.delete('/deleteArea/:id', authenticateToken, checkAdminDeleteArea, tre
 TreeRoute.delete('/deleteProcess/:id', authenticateToken, checkAdminDeleteProcess,treeComtroller.processDelete)
 TreeRoute.post('/postArea', authenticateToken, checkAdminPostArea, validateBody(AreaSchema), treeComtroller.areaPost )
 TreeRoute.post('/postProcess', authenticateToken, checkAdminPostProcess, validateBody(processSchema), treeComtroller.processPost)
+TreeRoute.put('/:id', authenticateToken, checkAdminPutArea, validateBody(AreaSchema), treeComtroller.processPost)
+
 
 
 export { TreeRoute };
