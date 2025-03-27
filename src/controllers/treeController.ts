@@ -31,6 +31,13 @@ async function treeAreaGet(req: Request, res: Response) {
     res.status(httpStatus.OK).send(user);
 };
 
+async function processPost(req: Request, res: Response){
+    const { name, description, areaId, tools, responsible ,documents } = req.body;
+    const process = await treeService.processPost(name, description, areaId, tools, responsible, documents);
+    res.status(httpStatus.CREATED).send(process);
+
+};
+
 export const treeComtroller = {
-    treeGet, areaDelete, processDelete, areaPost, treeAreaGet
+    treeGet, areaDelete, processDelete, areaPost, treeAreaGet, processPost
 };
