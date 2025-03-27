@@ -47,9 +47,6 @@ model Process {
   description String?
   area        Area      @relation(fields: [areaId], references: [id])
   areaId      Int
-  parent      Process?  @relation("ProcessHierarchy", fields: [parentId], references: [id])
-  parentId    String?
-  children    Process[] @relation("ProcessHierarchy")
   tools       String[]
   responsible String[]
   documents   String[]
@@ -57,6 +54,5 @@ model Process {
   updatedAt   DateTime  @updatedAt
 
   @@index([areaId])
-  @@index([parentId])
   @@map("processes")
 }

@@ -38,7 +38,6 @@ CREATE TABLE "processes" (
     "name" TEXT NOT NULL,
     "description" TEXT,
     "areaId" INTEGER NOT NULL,
-    "parentId" TEXT,
     "tools" TEXT[],
     "responsible" TEXT[],
     "documents" TEXT[],
@@ -57,14 +56,8 @@ CREATE UNIQUE INDEX "areas_name_key" ON "areas"("name");
 -- CreateIndex
 CREATE INDEX "processes_areaId_idx" ON "processes"("areaId");
 
--- CreateIndex
-CREATE INDEX "processes_parentId_idx" ON "processes"("parentId");
-
 -- AddForeignKey
 ALTER TABLE "sessions" ADD CONSTRAINT "sessions_userId_fkey" FOREIGN KEY ("userId") REFERENCES "users"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "processes" ADD CONSTRAINT "processes_areaId_fkey" FOREIGN KEY ("areaId") REFERENCES "areas"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "processes" ADD CONSTRAINT "processes_parentId_fkey" FOREIGN KEY ("parentId") REFERENCES "processes"("id") ON DELETE SET NULL ON UPDATE CASCADE;
