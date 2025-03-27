@@ -62,8 +62,13 @@ async function areaPost(name: string, description: string) {
         }
     })
     return area
-}
+};
+
+async function treeAreaGet() {
+    const areas = await prisma.area.findMany({});
+    return areas;
+};
 
 export const treeRepository = {
-    treeGet, areaExistsGet, areaDelete, processExistsGet, processDelete, areaPost
+    treeGet, areaExistsGet, areaDelete, processExistsGet, processDelete, areaPost, treeAreaGet
 };

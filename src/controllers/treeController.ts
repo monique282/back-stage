@@ -26,6 +26,11 @@ async function areaPost(req: Request, res: Response) {
 
 };
 
+async function treeAreaGet(req: Request, res: Response) {
+    const user = await treeService.treeAreaGet();
+    res.status(httpStatus.OK).send(user);
+};
+
 export const treeComtroller = {
-    treeGet, areaDelete, processDelete, areaPost
+    treeGet, areaDelete, processDelete, areaPost, treeAreaGet
 };

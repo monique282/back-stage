@@ -32,8 +32,14 @@ async function areaPost(name:string, description:string) {
     const area = await treeRepository.areaPost(name, description);
 
     return area;
-}
+};
+
+async function treeAreaGet() {
+    const register = await treeRepository.treeAreaGet();
+
+    return register;
+};
 
 export const treeService = {
-    treeGet, areaDelete, processDelete, areaPost
+    treeGet, areaDelete, processDelete, areaPost, treeAreaGet
 };
