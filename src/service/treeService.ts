@@ -40,6 +40,13 @@ async function treeAreaGet() {
     return register;
 };
 
+async function processPost(name: string, description: string, areaId: number, tools, responsible, documents) {
+
+    const areaExist = await treeRepository.areaExistGet(areaId);
+
+    return areaExist;
+};
+
 export const treeService = {
-    treeGet, areaDelete, processDelete, areaPost, treeAreaGet
+    treeGet, areaDelete, processDelete, areaPost, treeAreaGet, processPost
 };
