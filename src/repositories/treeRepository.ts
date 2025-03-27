@@ -61,6 +61,7 @@ async function areaPost(name: string, description: string) {
             description: description || null
         }
     })
+    return area
 }
 
 export const treeRepository = {
